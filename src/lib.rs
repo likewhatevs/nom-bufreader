@@ -74,6 +74,7 @@
 //! ```
 use nom::{Err, Offset, Parser};
 use std::io::{self, BufRead, Read};
+use thiserror::Error as ThisError;
 
 #[cfg(feature = "async")]
 use async_trait::async_trait;
@@ -87,7 +88,7 @@ use futures::{
 pub mod async_bufreader;
 pub mod bufreader;
 
-#[derive(Debug)]
+#[derive(Debug,ThisError)]
 pub enum Error<E> {
     Error(E),
     Failure(E),
